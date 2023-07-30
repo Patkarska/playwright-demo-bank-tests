@@ -2,23 +2,34 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Pulpit tests', () => {
     test('quick payment with correct data', async ({ page }) => {
-        await page.goto('https://demo-bank.vercel.app/');
-        await page.getByTestId('login-input').fill('test1234');
-        await page.getByTestId('password-input').fill('test1234');
+        //Arrange
+        const userId = 'testLogi';
+        const userPassword = 'password';
+
+        const receiverId = '3';
+        const transferAmount = '120';
+        const transferTitle = 'Zwrot';
+        const expextedTransferReceiver = 'Michael Scott';
+
+        //Act
+        await page.goto('/');
+        await page.getByTestId('login-input').fill(userId);
+        await page.getByTestId('password-input').fill(userPassword);
         await page.getByTestId('login-button').click();
 
-        await page.locator('#widget_1_transfer_receiver').selectOption('3');
-        await page.locator('#widget_1_transfer_amount').fill('120');
-        await page.locator('#widget_1_transfer_title').fill('Zwrot');
+        await page.locator('#widget_1_transfer_receiver').selectOption(receiverId);
+        await page.locator('#widget_1_transfer_amount').fill(transferAmount);
+        await page.locator('#widget_1_transfer_title').fill(transferTitle);
 
         await page.getByRole('button', { name: 'wykonaj' }).click();
         await page.getByTestId('close-button').click();
-      
-        await expect(page.locator('#show_messages')).toHaveText('Przelew wykonany! Michael Scott - 120,00PLN - Zwrot');
+
+        //Assert
+        await expect(page.locator('#show_messages')).toHaveText(`Przelew wykonany! ${expextedTransferReceiver} - ${transferAmount},00PLN - ${transferTitle}`);
     });
 
     test('successful phone top-up', async ({ page }) => {
-        await page.goto('https://demo-bank.vercel.app/');
+        await page.goto('/');
         await page.getByTestId('login-input').fill('test1234');
         await page.getByTestId('password-input').fill('test1234');
         await page.getByTestId('login-button').click();
