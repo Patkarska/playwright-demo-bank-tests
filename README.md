@@ -10,8 +10,9 @@ The repository contains tests written based on the course.
 
 ## Getting Started
 
-You'll need [Node.js](https://nodejs.org) installed on your computer in order to build this app.<br>
+You'll need [Node.js](https://nodejs.org) installed on your computer in order to use Playwright.<br>
 
+### Playwright 
 New project with Playwright:
 
 ```bash
@@ -41,3 +42,4 @@ View report:
 ```bash
 $ npx playwright show-report
 ```
+
