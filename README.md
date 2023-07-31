@@ -12,7 +12,8 @@ The repository contains tests written based on the course.
 
 You'll need [Node.js](https://nodejs.org) installed on your computer in order to use Playwright.<br>
 
-### Playwright 
+### Playwright
+
 New project with Playwright:
 
 ```bash
@@ -43,3 +44,40 @@ View report:
 $ npx playwright show-report
 ```
 
+## Other
+
+### Prettier
+
+In the project, [Prettier](https://prettier.io/) extension has been used for proper code formatting.
+
+Install Prettier:
+
+```bash
+$ npm install --save-dev --save-exact prettier
+```
+
+Configure Prettier:
+
+- exlude files in `.prettierignore`
+
+```bash
+package-lock.json
+playwright-report
+test-results
+```
+
+- set rules in `.prettierrc.json`
+
+```bash
+{
+    "singleQuote": true
+}
+```
+
+Run Prettier:
+
+```bash
+npx prettier --write .
+```
+
+Additionaly you can install Visual Studio Code extension: Prettier
