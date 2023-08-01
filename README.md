@@ -8,6 +8,14 @@ The repository contains tests written based on the course.
 - Course [jaktestowac.pl.](https://www.youtube.com/watch?v=JqEp2cjnzAo&list=PLfKhn9AcZ-cD2TCB__K7NP5XARaCzZYn7&ab_channel=jaktestowacpl) <br>
 - [Test site](https://demo-bank.vercel.app/) if link is broken go to [jaktestowac.pl.](https://jaktestowac.pl/lesson/pw1s01l01/)
 
+## Commit Message Guidelines
+
+From 1st August 2023, new commit message guidelines are in effect. Commit messages should start with a capital letter and be written in the present tense, beginning with an imperative verb. For example:
+
+- "Add feature to handle user authentication"
+- "Fix issue with data processing"
+- "Update documentation for new API endpoints"
+
 ## Getting Started
 
 You'll need [Node.js](https://nodejs.org) installed on your computer in order to use Playwright.<br>
