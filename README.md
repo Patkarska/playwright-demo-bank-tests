@@ -70,7 +70,8 @@ test-results
 
 ```bash
 {
-    "singleQuote": true
+  "singleQuote": true,
+  "endOfLine": "auto"
 }
 ```
 
