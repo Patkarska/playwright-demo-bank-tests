@@ -29,13 +29,12 @@ test.describe('User login', () => {
     const expextedErrorMessage = 'identyfikator ma min. 8 znaków';
 
     //Act
-    await page.getByTestId('login-input').fill(incorrectUserId);
-    await page.getByTestId('password-input').click();
+    const loginPage = new LoginPage(page);
+    await loginPage.loginInput.fill(incorrectUserId);
+    await loginPage.passwordInput.click();
 
     //Assert
-    await expect(page.getByTestId('error-login-id')).toHaveText(
-      expextedErrorMessage,
-    );
+    await expect(loginPage.loginError).toHaveText(expextedErrorMessage);
   });
 
   test('unsuccessful login with short password', async ({ page }) => {
@@ -45,13 +44,13 @@ test.describe('User login', () => {
     const expextedErrorMessage = 'hasło ma min. 8 znaków';
 
     //Act
-    await page.getByTestId('login-input').fill(userId);
-    await page.getByTestId('password-input').fill(incorrectUserPassword);
+    const loginPage = new LoginPage(page);
+    await loginPage.loginInput.fill(userId);
+    await loginPage.passwordInput.fill(incorrectUserPassword);
+
     await page.getByTestId('password-input').blur();
 
     //Assert
-    await expect(page.getByTestId('error-login-password')).toHaveText(
-      expextedErrorMessage,
-    );
+    await expect(loginPage.passwordError).toHaveText(expextedErrorMessage);
   });
 });
