@@ -3,8 +3,11 @@ import { loginData } from '../test-data/login.data';
 import { LoginPage } from '../pages/login.page';
 
 test.describe('User login', () => {
+  let loginPage: LoginPage;
+
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
+    loginPage = new LoginPage(page);
   });
 
   test('successful login with the correct credentials', async ({ page }) => {
@@ -14,7 +17,6 @@ test.describe('User login', () => {
     const expextedUserName = 'Jan Demobankowy';
 
     //Act
-    const loginPage = new LoginPage(page);
     await loginPage.loginInput.fill(userId);
     await loginPage.passwordInput.fill(userPassword);
     await loginPage.loginButton.click();
@@ -29,7 +31,6 @@ test.describe('User login', () => {
     const expextedErrorMessage = 'identyfikator ma min. 8 znaków';
 
     //Act
-    const loginPage = new LoginPage(page);
     await loginPage.loginInput.fill(incorrectUserId);
     await loginPage.passwordInput.click();
 
@@ -44,7 +45,6 @@ test.describe('User login', () => {
     const expextedErrorMessage = 'hasło ma min. 8 znaków';
 
     //Act
-    const loginPage = new LoginPage(page);
     await loginPage.loginInput.fill(userId);
     await loginPage.passwordInput.fill(incorrectUserPassword);
 

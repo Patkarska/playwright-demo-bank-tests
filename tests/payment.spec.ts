@@ -2,8 +2,11 @@ import { test, expect } from '@playwright/test';
 import { loginData } from '../test-data/login.data';
 import { LoginPage } from '../pages/login.page';
 import { PaymentPage } from '../pages/payment.page';
+import { PulpitPage } from '../pages/pulpit.page';
 
 test.describe('Payments tests', () => {
+  let paymentPage: PaymentPage;
+
   test.beforeEach(async ({ page }) => {
     const userId = loginData.userId;
     const userPassword = loginData.password;
@@ -15,6 +18,8 @@ test.describe('Payments tests', () => {
     await loginPage.loginButton.click();
 
     await page.getByRole('link', { name: 'płatności' }).click();
+
+    paymentPage = new PaymentPage(page);
   });
 
   test('simple payment', async ({ page }) => {
@@ -25,7 +30,6 @@ test.describe('Payments tests', () => {
     const expectedMessage = `Przelew wykonany! ${transferAmount},00PLN dla ${transferReceiver}`;
 
     //Act
-    const paymentPage = new PaymentPage(page);
     await paymentPage.transferReceiverInput.fill(transferReceiver);
     await paymentPage.transferAccountInput.fill(transferAccount);
     await paymentPage.transferAmountInput.fill(transferAmount);
