@@ -29,12 +29,11 @@ test.describe('Payments tests', () => {
     const expectedMessage = `Przelew wykonany! ${transferAmount},00PLN dla ${transferReceiver}`;
 
     //Act
-    await paymentPage.transferReceiverInput.fill(transferReceiver);
-    await paymentPage.transferAccountInput.fill(transferAccount);
-    await paymentPage.transferAmountInput.fill(transferAmount);
-    await paymentPage.paymentButton.click();
-
-    await paymentPage.closeButton.click();
+    await paymentPage.simplePayment(
+      transferReceiver,
+      transferAccount,
+      transferAmount,
+    );
 
     //Assert
     await expect(paymentPage.successfulPayment).toHaveText(expectedMessage);
