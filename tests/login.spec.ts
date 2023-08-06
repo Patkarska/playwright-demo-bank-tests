@@ -17,9 +17,7 @@ test.describe('User login', () => {
     const expextedUserName = 'Jan Demobankowy';
 
     //Act
-    await loginPage.loginInput.fill(userId);
-    await loginPage.passwordInput.fill(userPassword);
-    await loginPage.loginButton.click();
+    await loginPage.login(userId, userPassword);
 
     //Assert
     await expect(loginPage.successfulLogin).toHaveText(expextedUserName);
